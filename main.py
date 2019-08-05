@@ -8,6 +8,7 @@ class GrowingProgram(object):
         self.ID = 'id'
         self.BLOCKS = "blocks"
         self.growing_programs = {}
+        self.BLOCKDAYS = "blockDays"
 
     def parse_growing_json(self, data_JSON):
         growing_program = {}
