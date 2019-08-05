@@ -4,9 +4,10 @@ import time
 
 
 class GrowingProgram(object):
-    growing_programs = {}
+
     def __init__(self, growing_programs):
         self.growing_programs = {}
+
     def parse_growing_json(self, data_JSON):
         growing_program = {}
         blocks = []
