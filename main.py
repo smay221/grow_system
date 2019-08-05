@@ -4,8 +4,9 @@ import time
 
 
 class GrowingProgram(object):
-
-    def __init__(self, growing_programs):
+    def __init___(self):
+        self.ID = 'id'
+        self.BLOCKS = "blocks"
         self.growing_programs = {}
 
     def parse_growing_json(self, data_JSON):
@@ -23,14 +24,14 @@ class GrowingProgram(object):
 
     def add_new_growing_program(self, data_JSON):
         dict_growing_program = self.parse_growing_JSON(data_JSON)
-        value_id = dict_growing_program.pop("id")
+        value_id = dict_growing_program.pop(ID)
         self.growing_programs[value_id] = dict_growing_program
         print(self.growing_programs)
 
     def start_growing_program(self, dict_growing_program):
         counter_days = 0
 
-        for element in dict_growing_program["blocks"]:
+        for element in dict_growing_program[BLOCKS]:
             days = element["blockDays"]
             counter_days += days
             schedule.every(counter_days).seconds.do(self.stop_shedule, name='task_' + str(counter_days)).tag(
