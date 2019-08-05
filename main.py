@@ -9,18 +9,19 @@ class GrowingProgram(object):
         self.BLOCKS = "blocks"
         self.growing_programs = {}
         self.BLOCKDAYS = "blockDays"
+        self.TASK_ = "task_"
 
     def parse_growing_json(self, data_JSON):
         growing_program = {}
         blocks = []
         ser_data = json.loads(data_JSON)
         for key, value in ser_data.items():
-            if key != "blocks":
+            if key != BLOCKS:
                 growing_program[key] = value
-            if key == "blocks":
+            if key == BLOCKS:
                 for element in value:
                     blocks.append(element)
-        growing_program["blocks"] = blocks
+        growing_program[BLOCKS] = blocks
         return growing_program
 
     def add_new_growing_program(self, data_JSON):
@@ -33,10 +34,10 @@ class GrowingProgram(object):
         counter_days = 0
 
         for element in dict_growing_program[BLOCKS]:
-            days = element["blockDays"]
+            days = element[BLOCKSDAYS]
             counter_days += days
-            schedule.every(counter_days).seconds.do(self.stop_shedule, name='task_' + str(counter_days)).tag(
-                'task_' + str(counter_days))
+            schedule.every(counter_days).seconds.do(self.stop_shedule, name=TASK_ + str(counter_days)).tag(
+                TASK_ + str(counter_days))
 
     def stop_growing_program(self):
         pass
